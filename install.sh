@@ -25,3 +25,5 @@ chsh -s /usr/local/bin/zsh
 # Unhide library
 chflags nohidden ~/Library/
 
+# Enable right click and tap
+defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool YES
