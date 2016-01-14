@@ -25,12 +25,3 @@ chsh -s /usr/local/bin/zsh
 # Unhide library
 chflags nohidden ~/Library/
 
-# Install apps
-echo "Download and install following applications (⌘ + Double Click)"
-
-APPS=( "http://www.sublimetext.com/3" )
-
-for app in "${APPS[@]}"
-do
-	echo $app
-done
