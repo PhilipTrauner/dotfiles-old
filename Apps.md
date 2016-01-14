@@ -8,3 +8,4 @@
 * [Teamspeak 3](https://www.teamspeak.com/teamspeak3)
 * [Apple Configurator 2](https://itunes.apple.com/en/app/apple-configurator-2/id1037126344?mt=12)
 * [Google Chrome Canary](https://www.google.com/chrome/browser/canary.html)
+* [HyperDock](https://bahoom.com/hyperdock/)
