@@ -22,6 +22,9 @@ touch ~/.hushlogin
 echo "/usr/local/bin/zsh" >> /etc/shells
 chsh -s /usr/local/bin/zsh
 
+# Unhide library
+chflags nohidden ~/Library/
+
 # Install apps
 echo "Download and install following applications (⌘ + Double Click)"
 
