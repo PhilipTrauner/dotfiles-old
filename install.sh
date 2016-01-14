@@ -19,7 +19,7 @@ curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh >
 touch ~/.hushlogin
 
 # Use zsh as default shell
-echo "/usr/local/bin/zsh" >> /etc/shells
+echo "/usr/local/bin/zsh" | sudo tee --append /etc/shells
 chsh -s /usr/local/bin/zsh
 
 # Unhide library
