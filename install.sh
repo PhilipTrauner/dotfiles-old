@@ -11,7 +11,6 @@ command -v clang >/dev/null 2>&1 || { echo "Command line tools aren't installed"
 
 # Installing brew if not
 command -v brew >/dev/null 2>&1 || { ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; }
-brew install cask
 
 # Install Brewfile
 brew bundle install
@@ -33,3 +32,23 @@ chflags nohidden ~/Library/
 
 # Enable right click and tap
 defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool YES
+
+# Some defaults
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
+
+# Bottom right screen -> Show Desktop
+defaults write com.apple.dock wvous-br-corner -int 4
+
+# Disable Time Machine
+sudo tmutil disablelocal
+
+# Apply changes with reboot
+read -p "Press Enter to restart"
+sudo reboot
