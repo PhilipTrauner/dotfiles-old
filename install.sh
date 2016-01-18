@@ -24,7 +24,7 @@ curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh >
 touch ~/.hushlogin
 
 # Use zsh as default shell
-echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
+sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open("/etc/shells", "a").write("/usr/local/bin/zsh\n")'
 chsh -s /usr/local/bin/zsh
 
 # Unhide library
