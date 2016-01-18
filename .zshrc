@@ -17,6 +17,7 @@ export LANG=en_US.UTF-8
 alias flushdns='dscacheutil -flushcache'
 alias dnsflush='dscacheutil -flushcache'
 alias fumount='diskutil force umount'
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
