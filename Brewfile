@@ -4,6 +4,7 @@ tap 'caskroom/versions'
 tap 'homebrew/versions'
 
 brew 'cmus'
+brew 'p7zip'
 brew 'coreutils'
 brew 'ffmpeg'
 brew 'findutils'
