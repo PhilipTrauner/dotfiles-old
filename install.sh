@@ -49,6 +49,10 @@ defaults write com.apple.dock wvous-br-corner -int 4
 # Disable Time Machine
 sudo tmutil disablelocal
 
+# Install App Store apps
+mas install 937984704 
+mas install 497799835
+
 # Apply changes with reboot
 read -p "Press Enter to restart"
 sudo reboot
