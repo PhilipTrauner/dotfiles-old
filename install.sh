@@ -87,8 +87,8 @@ sudo tmutil disablelocal
 brew bundle install
 
 # Install App Store apps
-apps=("937984704" "497799835" "409201541" "409183694")
-# Amphetamine, Xcode, Pages, Keynote
+apps=("937984704" "497799835" "409201541" "409183694" "515113678")
+# Amphetamine, Xcode, Pages, Keynote, Solitaire
 
 for app in "${apps[@]}" 
 do
