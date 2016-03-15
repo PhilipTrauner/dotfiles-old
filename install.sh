@@ -8,11 +8,6 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Ask for new hostname
-echo -n "New Hostname (Enter to skip): "
-read hostname
-sudo hostname "$hostname"
-
 # Installing command line tools
 xcode-select --install
 read -p "Press Enter when either the command line tools or Xcode are installed"
