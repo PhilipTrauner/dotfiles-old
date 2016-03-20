@@ -24,10 +24,6 @@ mkdir ~/.antigen
 curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/.antigen/antigen.zsh 
 touch ~/.hushlogin
 
-# Use zsh as default shell
-sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open("/etc/shells", "a").write("/usr/local/bin/zsh\n")'
-chsh -s /usr/local/bin/zsh
-
 # Unhide library
 chflags nohidden ~/Library/
 
@@ -80,6 +76,10 @@ sudo tmutil disablelocal
 
 # Install Brewfile
 brew bundle install
+
+# Use zsh as default shell
+sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open("/etc/shells", "a").write("/usr/local/bin/zsh\n")'
+chsh -s /usr/local/bin/zsh
 
 # Install App Store apps
 apps=("937984704" "497799835" "409201541" "409183694" "515113678")
