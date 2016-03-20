@@ -19,6 +19,14 @@ alias dnsflush='dscacheutil -flushcache'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias update='mas upgrade && brew update && brew upgrade && brew cask update'
 
+transfer() {
+    # write to output to tmpfile because of progress bar
+    tmpfile=$( mktemp -t transferXXX )
+    curl --progress-bar --upload-file $1 https://transfer.sh/$(basename $1) >> $tmpfile;
+    cat $tmpfile;
+    rm -f $tmpfile;
+}
+
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
