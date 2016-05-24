@@ -21,7 +21,7 @@ cp .zshrc ~/
 
 # Installing antigen
 mkdir ~/.antigen
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/.antigen/antigen.zsh 
+curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/.antigen/antigen.zsh
 touch ~/.hushlogin
 
 # Unhide library
@@ -48,7 +48,7 @@ defaults write com.apple.dock wvous-br-corner -int 4
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 defaults write com.apple.menuextra.battery ShowPercent -bool true
 # Enable right click and tap with two fingers
-defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool YES
+defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool true
 
 # Finder
 defaults write com.apple.finder ShowPathbar -bool true
@@ -68,8 +68,29 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
 # Dock
 defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock tilesize -integer 50
+defaults write com.apple.dock tilesize -int 50
 
+# iTunes
+defaults write com.apple.iTunes disableAppleMusic -int 1
+defaults write com.apple.iTunes disableMusicStore -int 1
+defaults write com.apple.iTunes disableArtistConnect -int 1
+defaults write com.apple.iTunes disablePodcasts -int 0
+defaults write com.apple.iTunes disableRadio -int 1
+defaults write com.apple.iTunes doesAccountArtistListHaveSharePermission -int 1
+defaults write com.apple.iTunes disableSharedMusic -int 0
+
+# HyperDock
+defaults write de.bahoom.HyperDock disclaimer_accepted -int 1
+defaults write de.bahoom.HyperDock itunes_preview_ratings -int 1
+defaults write de.bahoom.HyperDock move_windows -int 0
+defaults write de.bahoom.HyperDock license_accepted -int 1
+defaults write de.bahoom.HyperDock keyboard_arrange -int 0
+
+# Spotlight
+defaults write com.apple.Spotlight showedLearnMore -int 1
+
+# iTerm2
+defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Disable Time Machine
 sudo tmutil disablelocal
@@ -82,16 +103,16 @@ sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open(
 chsh -s /usr/local/bin/zsh
 
 # Install App Store apps
-apps=("937984704" "497799835" "409201541" "409183694" "515113678")
-# Amphetamine, Xcode, Pages, Keynote, Solitaire
+apps=("1114363220" "937984704" "497799835" "409201541" "409183694" "515113678")
+# TermHere, Amphetamine, Xcode, Pages, Keynote, Solitaire
 
-for app in "${apps[@]}" 
+for app in "${apps[@]}"
 do
 	if [[ $(mas list | grep "$app") ]]; then
 		echo "App $app already installed."
 	else
 		mas install "$app"
-	fi 
+	fi
 done
 
 # Apply changes with reboot
