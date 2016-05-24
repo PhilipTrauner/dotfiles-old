@@ -3,6 +3,7 @@ cask_args appdir: '/Applications'
 tap 'caskroom/versions'
 tap 'homebrew/versions'
 tap 'caskroom/fonts'
+tap 'argon/mas'
 
 brew 'cmus'
 brew 'p7zip'
