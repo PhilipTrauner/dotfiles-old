@@ -91,6 +91,7 @@ defaults write com.apple.Spotlight showedLearnMore -int 1
 
 # iTerm2
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -int 1
 
 # Disable Time Machine
 sudo tmutil disablelocal
