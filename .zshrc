@@ -3,7 +3,7 @@ if [[ -a ~/.iterm2_shell_integration.zsh ]]; then
 	source ~/.iterm2_shell_integration.zsh
 fi
 
-. `brew --prefix`/etc/profile.d/z.sh
+. ~/.z-stuff/z.sh
 
 antigen use oh-my-zsh
 antigen bundle git
@@ -13,11 +13,6 @@ antigen apply
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-alias flushdns='dscacheutil -flushcache'
-alias dnsflush='dscacheutil -flushcache'
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias update='mas upgrade && brew update && brew upgrade && brew cask update'
 
 transfer() {
     # write to output to tmpfile because of progress bar
