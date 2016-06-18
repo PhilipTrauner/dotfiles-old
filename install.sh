@@ -24,7 +24,7 @@ sudo apt-get install zsh nginx build-essential nmap unrar tree
 
 # Recent nodejs versions aren't avaliabe in the Ubuntu 14.04 repos
 curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get install node-js
+sudo apt-get install nodejs
 
 # Change shell to zsh
 sudo chsh -s /bin/zsh
