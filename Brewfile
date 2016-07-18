@@ -1,4 +1,4 @@
-cask_args appdir: '/Applications'
+# cask_args appdir: '/Applications'
 
 tap 'caskroom/versions'
 tap 'homebrew/versions'
@@ -31,8 +31,6 @@ brew 'zsh'
 
 cask 'appcleaner'
 cask 'bittorrent-sync'
-cask 'dolphin'
-cask 'dropbox'
 cask 'filezilla'
 cask 'firefoxdeveloperedition'
 cask 'font-source-code-pro'
