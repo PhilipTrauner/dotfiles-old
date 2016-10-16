@@ -81,7 +81,7 @@ defaults write com.apple.iTunes disableSharedMusic -int 0
 
 # HyperDock
 defaults write de.bahoom.HyperDock disclaimer_accepted -int 1
-defaults write de.bahoom.HyperDock itunes_preview_ratings -int 1
+defaults write de.bahoom.HyperDock itunes_preview_ratings -int 0
 defaults write de.bahoom.HyperDock move_windows -int 0
 defaults write de.bahoom.HyperDock license_accepted -int 1
 defaults write de.bahoom.HyperDock keyboard_arrange -int 0
@@ -104,8 +104,8 @@ sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open(
 chsh -s /usr/local/bin/zsh
 
 # Install App Store apps
-apps=("1114363220" "937984704" "497799835" "409201541" "409183694" "515113678")
-# TermHere, Amphetamine, Xcode, Pages, Keynote, Solitaire
+apps=("1114363220" "937984704" "497799835" "409201541" "409183694" "515113678" "1006739057")
+# TermHere, Amphetamine, Xcode, Pages, Keynote, Solitaire, NepTunes
 
 for app in "${apps[@]}"
 do
