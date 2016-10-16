@@ -21,7 +21,7 @@ cp .zshrc ~/
 
 # Installing antigen
 mkdir ~/.antigen
-curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > ~/.antigen/antigen.zsh
+curl -L https://cdn.rawgit.com/zsh-users/antigen/v1.2.1/bin/antigen.zsh > ~/.antigen/antigen.zsh
 touch ~/.hushlogin
 
 # Unhide library
