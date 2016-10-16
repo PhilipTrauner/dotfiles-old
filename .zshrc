@@ -18,6 +18,7 @@ alias flushdns='dscacheutil -flushcache'
 alias dnsflush='dscacheutil -flushcache'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias update='mas upgrade && brew update && brew upgrade && brew cask update'
+alias mount-s3='s3fs music_library /Users/philip/S3/music_library -o passwd_file=/Users/philip/Dropbox/Other\ stuff/s3 -o url=https://sos.exo.io -o retries=1'
 
 transfer() {
     # write to output to tmpfile because of progress bar
@@ -30,6 +31,6 @@ transfer() {
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export MANPATH="/usr/local/man:$MANPATH"
 export EDITOR='nano'
