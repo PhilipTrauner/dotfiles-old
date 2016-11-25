@@ -7,6 +7,8 @@ fi
 
 antigen use oh-my-zsh
 antigen bundle git
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen theme PhilipTrauner/zsh-bundle themes/texas
 antigen apply
@@ -18,7 +20,6 @@ alias flushdns='dscacheutil -flushcache'
 alias dnsflush='dscacheutil -flushcache'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias update='mas upgrade && brew update && brew upgrade && brew cask update'
-alias mount-s3='s3fs music_library /Users/philip/S3/music_library -o passwd_file=/Users/philip/Dropbox/Other\ stuff/s3 -o url=https://sos.exo.io -o retries=1'
 
 transfer() {
     # write to output to tmpfile because of progress bar
