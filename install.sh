@@ -103,6 +103,12 @@ brew bundle install
 sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open("/etc/shells", "a").write("/usr/local/bin/zsh\n")'
 chsh -s /usr/local/bin/zsh
 
+# Install rustup
+curl https://sh.rustup.rs -sSf > rustup.sh
+chmod +x rustup.sh
+./rustup.sh -y
+rm rustup.sh
+
 # Install App Store apps
 apps=("1114363220" "937984704" "497799835" "409201541" "409183694" "515113678" "1006739057")
 # TermHere, Amphetamine, Xcode, Pages, Keynote, Solitaire, NepTunes
