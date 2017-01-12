@@ -33,5 +33,6 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/.cargo/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 export EDITOR='nano'
