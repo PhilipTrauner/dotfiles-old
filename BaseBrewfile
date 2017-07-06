@@ -38,6 +38,7 @@ cask 'typora'
 cask 'Dropbox'
 cask 'sublime-text'
 cask 'airfoil'
+cask 'teamspeak-client'
 
 mas "Xcode", id: 497799835
 mas "Numbers", id: 409203825
