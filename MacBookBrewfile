@@ -1,0 +1,5 @@
+cask "parallels-desktop"
+cask "steam"
+cask "battle-net"
+
+mas "Solitaire", id: 515113678

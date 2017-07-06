@@ -1,0 +1,10 @@
+tap "caskroom/drivers"
+
+cask "logitech-gaming-software"
+cask "bartender"
+cask "plex-media-server"
+cask "java"
+cask "filebot"
+cask "transmission"
+
+mas "Server", id: 883878097
