@@ -1,15 +1,38 @@
 #!/bin/bash
 
+set -e
+
+if [[ $EUID -eq 0 ]]; then
+   echo "This script should not be run as root." 1>&2
+   exit 1
+fi
+
 read -p "If you are on a slow connection executing this script with caffeinate is recommended (caffeinate -is ./install.sh)"
 
 # Ask for the administrator password upfront.
 sudo -v
 
+VALID_INPUT=0;
+
+while [ $VALID_INPUT -eq 0 ]
+do
+	read -r -p "MacBook (mb) or Mac mini (mm)? " MAC
+	if [[ "$MAC" = "mb" ]]
+	then
+			echo "MacBook selected."
+			VALID_INPUT=1;
+	elif [[ "$MAC" = "mm" ]]
+	then
+			echo "Mac mini selected."
+			VALID_INPUT=1;
+	fi
+done
+
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Installing command line tools
-xcode-select --install
+xcode-select --install || echo "Xcode command line tools already installed"
 read -p "Press Enter when either the command line tools or Xcode are installed"
 command -v clang >/dev/null 2>&1 || { echo "Command line tools aren't installed"; exit 1; }
 
@@ -20,13 +43,12 @@ command -v brew >/dev/null 2>&1 || { ruby -e "$(curl -fsSL https://raw.githubuse
 cp .zshrc ~/
 
 # Installing antigen
-mkdir ~/.antigen
-curl -L https://cdn.rawgit.com/zsh-users/antigen/v1.2.1/bin/antigen.zsh > ~/.antigen/antigen.zsh
+mkdir -p ~/.antigen
+curl -L git.io/antigen > ~/.antigen/antigen.zsh
 touch ~/.hushlogin
 
 # Unhide library
 chflags nohidden ~/Library/
-
 
 # Defaults
 # Don't write .DS_Store files to network drives and external storage media
@@ -42,13 +64,15 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # Save screenshots in PNG format
 defaults write com.apple.screencapture type -string "png"
-# Bottom right screen -> Show Desktop
-defaults write com.apple.dock wvous-br-corner -int 4
 # Check for software updates daily, not just once per week
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 defaults write com.apple.menuextra.battery ShowPercent -bool true
-# Enable right click and tap with two fingers
-defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool true
+# Crash reports as notifications
+defaults write com.apple.CrashReporter UseUNC 1
+# Disable MissionControl
+defaults write com.apple.dashboard mcx-disabled -boolean true
+# Use plain text in TextEdit
+defaults write com.apple.TextEdit RichText -int 0
 
 # Finder
 defaults write com.apple.finder ShowPathbar -bool true
@@ -61,7 +85,6 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Safari
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
 # Time Machine
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -69,15 +92,6 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 # Dock
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock tilesize -int 50
-
-# iTunes
-defaults write com.apple.iTunes disableAppleMusic -int 1
-defaults write com.apple.iTunes disableMusicStore -int 1
-defaults write com.apple.iTunes disableArtistConnect -int 1
-defaults write com.apple.iTunes disablePodcasts -int 0
-defaults write com.apple.iTunes disableRadio -int 1
-defaults write com.apple.iTunes doesAccountArtistListHaveSharePermission -int 1
-defaults write com.apple.iTunes disableSharedMusic -int 0
 
 # HyperDock
 defaults write de.bahoom.HyperDock disclaimer_accepted -int 1
@@ -96,8 +110,20 @@ defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -int 1
 # Disable Time Machine
 sudo tmutil disablelocal
 
+# Copy spectacle config
+mkdir -p ~/Library/Application\ Support/Spectacle
+cp Shortcuts.json ~/Library/Application\ Support/Spectacle
+
 # Install Brewfile
-brew bundle install
+brew bundle --file=BaseBrewfile || echo "Some packages could not be installed."
+
+if [[ "$MAC" = "mb" ]]
+then
+		brew bundle --file=MacBookBrewfile
+elif [[ "$MAC" = "mm" ]]
+then
+		brew bundle --file=MacMiniBrewfile
+fi
 
 # Use zsh as default shell
 sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open("/etc/shells", "a").write("/usr/local/bin/zsh\n")'
@@ -109,18 +135,7 @@ chmod +x rustup.sh
 ./rustup.sh -y
 rm rustup.sh
 
-# Install App Store apps
-apps=("1114363220" "937984704" "497799835" "409201541" "409183694" "515113678" "1006739057")
-# TermHere, Amphetamine, Xcode, Pages, Keynote, Solitaire, NepTunes
-
-for app in "${apps[@]}"
-do
-	if [[ $(mas list | grep "$app") ]]; then
-		echo "App $app already installed."
-	else
-		mas install "$app"
-	fi
-done
+echo "Additional drivers in Dropbox, install manually."
 
 # Apply changes with reboot
 read -p "Press Enter to restart (Crtl+C to skip)"
