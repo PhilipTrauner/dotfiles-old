@@ -19,11 +19,17 @@ do
 	read -r -p "MacBook (mb) or Mac mini (mm)? " MAC
 	if [[ "$MAC" = "mb" ]]
 	then
-			echo "MacBook selected."
+			echo "MacBook selected. (Hostname: Aperture)"
+			sudo scutil --set HostName Aperture
+			sudo scutil --set ComputerName Aperture
+			sudo scutil --set LocalHostName Aperture
 			VALID_INPUT=1;
 	elif [[ "$MAC" = "mm" ]]
 	then
-			echo "Mac mini selected."
+			echo "Mac mini selected. (Hostname: Abstergo)"
+			sudo scutil --set HostName Abstergo
+			sudo scutil --set ComputerName Abstergo
+			sudo scutil --set LocalHostName Abstergo
 			VALID_INPUT=1;
 	fi
 done
