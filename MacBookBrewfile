@@ -1,4 +1,4 @@
-cask "parallels-desktop"
+cask "parallels-desktop11"
 cask "steam"
 cask "battle-net"
 
