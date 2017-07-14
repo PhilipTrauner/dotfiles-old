@@ -7,7 +7,7 @@ if [[ $EUID -eq 0 ]]; then
    exit 1
 fi
 
-read -p "If you are on a slow connection executing this script with caffeinate is recommended (caffeinate -is ./install.sh)"
+read -p "If you are on a slow connection executing this script with caffeinate is recommended (caffeinate -isd ./install.sh)"
 
 # Ask for the administrator password upfront.
 sudo -v
