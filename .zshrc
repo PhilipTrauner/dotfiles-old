@@ -32,3 +32,24 @@ COMPLETION_WAITING_DOTS="true"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cargo/bin"
 export MANPATH="/usr/local/man:$MANPATH"
 export EDITOR="nano"
+
+read -r -d '' SPOTIFY_STATUS << EOM
+on is_running(appName)
+    tell application "System Events" to (name of processes) contains appName
+end is_running
+
+if is_running("Spotify") then
+	tell application "Spotify"
+		if (player state as string) is equal to "playing"
+			set currentTrack to name of current track as string
+			set currentArtist to artist of current track as string
+  
+    			set output to ("▶️  " & currentTrack & " - " & currentArtist)
+			do shell script "echo " & quoted form of output
+		end if
+	end tell
+end if
+EOM
+
+osascript -e "$SPOTIFY_STATUS"
+curl "wttr.in/$(curl -s http://ip-api.com/json | python -c "import sys, json; print json.load(sys.stdin)['city'].replace(' ', '+')" 2>/dev/null )?0?q" 2>/dev/null
