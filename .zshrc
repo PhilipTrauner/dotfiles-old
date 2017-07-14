@@ -23,8 +23,9 @@ export LANG=en_US.UTF-8
 alias flushdns="dscacheutil -flushcache"
 alias dnsflush="dscacheutil -flushcache"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-alias update="mas upgrade && brew update && brew upgrade && brew cask update"
+alias update="mas upgrade && brew update && brew upgrade"
 alias lsblk="diskutil list"
+alias resetlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
 
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
