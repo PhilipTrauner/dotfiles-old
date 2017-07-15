@@ -53,4 +53,3 @@ end if
 EOM
 
 osascript -e "$SPOTIFY_STATUS"
-curl "wttr.in/$(curl -s http://ip-api.com/json | python -c "import sys, json; print json.load(sys.stdin)['city'].replace(' ', '+')" 2>/dev/null )?0?q" 2>/dev/null
