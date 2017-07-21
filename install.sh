@@ -7,10 +7,15 @@ if [[ $EUID -eq 0 ]]; then
    exit 1
 fi
 
+COLOR='\033[0;33m'
+END='\033[0m\n' # No Color
+
 read -p "If you are on a slow connection executing this script with caffeinate is recommended (caffeinate -isd ./install.sh)"
 
 # Ask for the administrator password upfront.
 sudo -v
+
+printf "${COLOR}Setting hostname${END}"
 
 VALID_INPUT=0;
 
@@ -30,6 +35,9 @@ do
 			sudo scutil --set HostName Abstergo
 			sudo scutil --set ComputerName Abstergo
 			sudo scutil --set LocalHostName Abstergo
+			printf "${COLOR}Disabling energy saving${END}"
+			sudo pmset -a displaysleep 0 womp 1 disksleep 1 autorestart 1 powernap 1
+
 			VALID_INPUT=1;
 	fi
 done
@@ -37,26 +45,27 @@ done
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Installing command line tools
+printf "${COLOR}Installing command line tools${END}"
 xcode-select --install || echo "Xcode command line tools already installed"
 read -p "Press Enter when either the command line tools or Xcode are installed"
 command -v clang >/dev/null 2>&1 || { echo "Command line tools aren't installed"; exit 1; }
 
-# Installing brew if not
+printf "${COLOR}Installing brew${END}"
 command -v brew >/dev/null 2>&1 || { ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; }
 
+printf "${COLOR}Overriding .zshrc${END}"
 # Copy zshrc
 cp .zshrc ~/
 
-# Installing antigen
+printf "${COLOR}Installing antigen${END}"
 mkdir -p ~/.antigen
 curl -L git.io/antigen > ~/.antigen/antigen.zsh
 touch ~/.hushlogin
 
-# Unhide library
+printf "${COLOR}Unhiding ~/Library${END}"
 chflags nohidden ~/Library/
 
-# Defaults
+printf "${COLOR}Setting defaults${END}"
 # Don't write .DS_Store files to network drives and external storage media
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
@@ -105,6 +114,13 @@ defaults write de.bahoom.HyperDock itunes_preview_ratings -int 0
 defaults write de.bahoom.HyperDock move_windows -int 0
 defaults write de.bahoom.HyperDock license_accepted -int 1
 defaults write de.bahoom.HyperDock keyboard_arrange -int 0
+defaults write de.bahoom.HyperDock resize_windows -int 0
+defaults write de.bahoom.HyperDock window_snapping_delay_near -float 0.2
+defaults write de.bahoom.HyperDock titlebar_scroll_arrange -int 0
+
+# Spotify Notifications
+defaults write io.citruspi.Spotify-Notifications iconSelection -int 2
+defaults write io.citruspi.Spotify-Notifications playpausenotifs -int 0
 
 # Spotlight
 defaults write com.apple.Spotlight showedLearnMore -int 1
@@ -113,16 +129,18 @@ defaults write com.apple.Spotlight showedLearnMore -int 1
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -int 1
 
+printf "${COLOR}Disabling Time Machine${END}"
 # Disable Time Machine
 sudo tmutil disablelocal
 
-# Copy spectacle config
+printf "${COLOR}Overriding Spectacle config${END}"
 mkdir -p ~/Library/Application\ Support/Spectacle
 cp Shortcuts.json ~/Library/Application\ Support/Spectacle
 
-# Install Brewfile
+printf "${COLOR}Installing BaseBrewfile${END}"
 brew bundle --file=BaseBrewfile || echo "Some packages could not be installed."
 
+printf "${COLOR}Installing specific Brewfile${END}"
 if [[ "$MAC" = "mb" ]]
 then
 		brew bundle --file=MacBookBrewfile
@@ -131,11 +149,11 @@ then
 		brew bundle --file=MacMiniBrewfile
 fi
 
-# Use zsh as default shell
+printf "${COLOR}Change shell to zsh${END}"
 sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open("/etc/shells", "a").write("/usr/local/bin/zsh\n")'
-chsh -s /usr/local/bin/zsh
+sudo chsh -s /usr/local/bin/zsh $(whoami)
 
-# Install rustup
+printf "${COLOR}Installing rustup${END}"
 curl https://sh.rustup.rs -sSf > rustup.sh
 chmod +x rustup.sh
 ./rustup.sh -y
