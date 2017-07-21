@@ -2,5 +2,5 @@ cask "parallels-desktop11"
 cask "steam"
 cask "battle-net"
 
-
 mas "Solitaire", id: 515113678
+mas "Amphetamine", id: 937984704
