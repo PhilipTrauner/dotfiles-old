@@ -24,6 +24,7 @@ brew 'zsh'
 
 cask 'appcleaner'
 cask 'spotify'
+cask 'spotify-notifications'
 cask 'filezilla'
 cask 'font-source-code-pro'
 cask 'gimp'
@@ -37,7 +38,7 @@ cask 'vlc'
 cask 'spectacle'
 cask 'typora'
 cask 'Dropbox'
-cask 'sublime-text'
+cask 'sublime-text-dev'
 cask 'airfoil'
 cask 'teamspeak-client'
 
@@ -45,5 +46,4 @@ mas "Xcode", id: 497799835
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Keynote", id: 409183694
-mas "Amphetamine", id: 937984704
 mas "Microsoft Remote Desktop", id: 715768417
