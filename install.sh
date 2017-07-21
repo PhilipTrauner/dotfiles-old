@@ -53,6 +53,15 @@ command -v clang >/dev/null 2>&1 || { echo "Command line tools aren't installed"
 printf "${COLOR}Installing brew${END}"
 command -v brew >/dev/null 2>&1 || { ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; }
 
+printf "${COLOR}Automatically load keys into ssh-agent${END}"
+mkdir -p ~/.ssh
+cat >> ~/.ssh/config <<EOF
+Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityFile ~/.ssh/id_rsa
+EOF
+
 printf "${COLOR}Overriding .zshrc${END}"
 # Copy zshrc
 cp .zshrc ~/
