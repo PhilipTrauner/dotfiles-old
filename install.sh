@@ -129,7 +129,7 @@ defaults write de.bahoom.HyperDock titlebar_scroll_arrange -int 0
 
 # Spotify Notifications
 defaults write io.citruspi.Spotify-Notifications iconSelection -int 2
-defaults write io.citruspi.Spotify-Notifications playpausenotifs -int 0
+defaults write io.citruspi.Spotify-Notifications playpausenotifs -int 1
 
 # Spotlight
 defaults write com.apple.Spotlight showedLearnMore -int 1
