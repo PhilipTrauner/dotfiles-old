@@ -168,7 +168,8 @@ chmod +x rustup.sh
 ./rustup.sh -y
 rm rustup.sh
 
-echo "Additional drivers in Dropbox, install manually."
+printf "${COLOR}Resetting Launchpad${END}"
+defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
 
 # Apply changes with reboot
 read -p "Press Enter to restart (Crtl+C to skip)"
