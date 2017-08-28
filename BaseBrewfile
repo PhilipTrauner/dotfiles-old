@@ -41,6 +41,9 @@ cask 'Dropbox'
 cask 'sublime-text-dev'
 cask 'airfoil'
 cask 'teamspeak-client'
+cask 'knockknock'
+cask 'blockblock'
+cask 'taskexplorer'
 
 mas "Xcode", id: 497799835
 mas "Numbers", id: 409203825
