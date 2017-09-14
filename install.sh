@@ -55,7 +55,7 @@ command -v brew >/dev/null 2>&1 || { ruby -e "$(curl -fsSL https://raw.githubuse
 
 printf "${COLOR}Automatically load keys into ssh-agent${END}"
 mkdir -p ~/.ssh
-cat >> ~/.ssh/config <<EOF
+cat > ~/.ssh/config <<EOF
 Host *
 	AddKeysToAgent yes
 	UseKeychain yes
@@ -156,6 +156,7 @@ then
 elif [[ "$MAC" = "mm" ]]
 then
 		brew bundle --file=MacMiniBrewfile
+		echo "sensible-side-buttons is not avaliable as a cask: https://github.com/archagon/sensible-side-buttons"
 fi
 
 printf "${COLOR}Change shell to zsh${END}"
