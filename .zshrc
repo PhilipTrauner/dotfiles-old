@@ -29,6 +29,7 @@ alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias update="mas upgrade && brew update && brew upgrade"
 alias lsblk="diskutil list"
 alias resetlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
+alias wheatley='SwitchAudioSource -t output -s "Wheatley"'
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.cargo/bin"
 export MANPATH="/usr/local/man:$MANPATH"
