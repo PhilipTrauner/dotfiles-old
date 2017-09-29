@@ -140,7 +140,7 @@ defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -int 1
 
 printf "${COLOR}Disabling Time Machine${END}"
 # Disable Time Machine
-sudo tmutil disablelocal
+sudo tmutil disable
 
 printf "${COLOR}Overriding Spectacle config${END}"
 mkdir -p ~/Library/Application\ Support/Spectacle
