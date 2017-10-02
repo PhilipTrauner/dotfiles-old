@@ -74,6 +74,9 @@ touch ~/.hushlogin
 printf "${COLOR}Unhiding ~/Library${END}"
 chflags nohidden ~/Library/
 
+printf "${COLOR}Creating Developer folder${END}"
+[[ -d ~/Developer ]] || mkdir ~/Developer
+
 printf "${COLOR}Setting defaults${END}"
 # Don't write .DS_Store files to network drives and external storage media
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
@@ -156,7 +159,6 @@ then
 elif [[ "$MAC" = "mm" ]]
 then
 		brew bundle --file=MacMiniBrewfile
-		echo "sensible-side-buttons is not avaliable as a cask: https://github.com/archagon/sensible-side-buttons"
 fi
 
 printf "${COLOR}Change shell to zsh${END}"
