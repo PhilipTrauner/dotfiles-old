@@ -9,13 +9,12 @@ fi
 
 COLOR='\033[0;33m'
 END='\033[0m\n' # No Color
+DEVICE_SPECIFIC=false
 
 read -p "If you are on a slow connection executing this script with caffeinate is recommended (caffeinate -isd ./install.sh)"
 
 # Ask for the administrator password upfront.
 sudo -v
-
-printf "${COLOR}Setting hostname${END}"
 
 if system_profiler SPHardwareDataType | grep -q "Mac mini"; then
 		MAC='mm'
@@ -26,20 +25,33 @@ else
 	exit 1
 fi
 
+read -r -p "Apply device specific settings? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+then
+	DEVICE_SPECIFIC=true
+fi
+
+
 if [[ "$MAC" = "mb" ]]
 then
-	echo "MacBook selected. (Hostname: Aperture)"
-	sudo scutil --set HostName Aperture
-	sudo scutil --set ComputerName Aperture
-	sudo scutil --set LocalHostName Aperture
+	echo "MacBook detected."
+	if [ "$DEVICE_SPECIFIC" = true ] ; then
+		printf "${COLOR}Setting hostname: Aperture${END}"
+		sudo scutil --set HostName Aperture
+		sudo scutil --set ComputerName Aperture
+		sudo scutil --set LocalHostName Aperture
+	fi
 elif [[ "$MAC" = "mm" ]]
 then
-	echo "Mac mini selected. (Hostname: Abstergo)"
-	sudo scutil --set HostName Abstergo
-	sudo scutil --set ComputerName Abstergo
-	sudo scutil --set LocalHostName Abstergo
-	printf "${COLOR}Disabling energy saving${END}"
-	sudo pmset -a displaysleep 0 womp 1 disksleep 1 autorestart 1 powernap 1
+	echo "Mac mini detected."
+	if [ "$DEVICE_SPECIFIC" = true ] ; then
+		printf "${COLOR}Setting hostname: Abstergo${END}"
+		sudo scutil --set HostName Abstergo
+		sudo scutil --set ComputerName Abstergo
+		sudo scutil --set LocalHostName Abstergo
+		printf "${COLOR}Disabling energy saving${END}"
+		sudo pmset -a displaysleep 0 womp 1 disksleep 1 autorestart 1 powernap 1
+	fi
 fi
 
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
