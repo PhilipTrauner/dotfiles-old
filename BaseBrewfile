@@ -46,6 +46,7 @@ cask 'knockknock'
 cask 'blockblock'
 cask 'taskexplorer'
 cask 'dash'
+cask 'etcher'
 
 mas "Xcode", id: 497799835
 mas "Numbers", id: 409203825
