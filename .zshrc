@@ -3,8 +3,6 @@ if [[ -a ~/.iterm2_shell_integration.zsh ]]; then
 	source ~/.iterm2_shell_integration.zsh
 fi
 
-. `brew --prefix`/etc/profile.d/z.sh
-
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle pip
