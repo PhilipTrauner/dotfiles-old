@@ -1,5 +1,3 @@
-tap "caskroom/drivers"
-
 cask "bartender"
 cask "plex-media-server"
 cask "filebot"
