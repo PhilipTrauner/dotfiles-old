@@ -21,6 +21,8 @@ brew 'tree'
 brew 'wakeonlan'
 brew 'wget'
 brew 'zsh'
+brew 'direnv'
+brew 'pipenv'
 
 cask 'appcleaner'
 cask 'spotify'
@@ -55,10 +57,3 @@ cask 'drawio'
 cask 'virtualbox'
 cask 'virtualbox-extension-pack'
 cask 'tunnelblick'
-
-mas "Xcode", id: 497799835
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Keynote", id: 409183694
-mas "Microsoft Remote Desktop", id: 715768417
-mas "Pixelmator", id: 407963104
