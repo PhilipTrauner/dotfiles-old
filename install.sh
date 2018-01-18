@@ -164,14 +164,31 @@ cp Shortcuts.json ~/Library/Application\ Support/Spectacle
 printf "${COLOR}Installing BaseBrewfile${END}"
 brew bundle --file=BaseBrewfile || echo "Some packages could not be installed."
 
+# Mac App Store apps
+# (not included in Brewfile to allow for non-blocking install)
+# Pixelmator, Keynote, Pages, Numbers, Xcode, Microsoft Remote Desktop 10
+apps=("407963104" "409183694" "409201541" "409203825" \
+	"497799835" "1295203466")
+
 printf "${COLOR}Installing specific Brewfile${END}"
 if [[ "$MAC" = "mb" ]]
 then
 		brew bundle --file=MacBookBrewfile
+
+		# Solitaire
+		apps+=("515113678")
+		# Amphetamine
+		apps+=("937984704")
+
+
 elif [[ "$MAC" = "mm" ]]
 then
 		brew bundle --file=MacMiniBrewfile
 fi
+
+printf "${COLOR}Installing Mac App Store apps in background${END}"
+mas install ${apps[*]} > /dev/null 2>&1 &
+
 
 printf "${COLOR}Change shell to zsh${END}"
 sudo python -c 'if not "/usr/local/bin/zsh" in open("/etc/shells").read(): open("/etc/shells", "a").write("/usr/local/bin/zsh\n")'

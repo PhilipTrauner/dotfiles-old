@@ -2,6 +2,3 @@ cask "parallels"
 cask "steam"
 cask "battle-net"
 cask "microsoft-office"
-
-mas "Solitaire", id: 515113678
-mas "Amphetamine", id: 937984704
